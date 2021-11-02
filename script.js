@@ -1,25 +1,30 @@
 /*  creo un prompt chiedendo il livello di difficoltà 
-richiamo il contenitore (dell'html) per assegnargli una costante
-creo un ciclo for per creare i quadrati
-    scrivo i numeri all'interno dei quadrati dandogli display none
-    adatterò la tabella creata in base alla difficoltà scelta dallo user
+richiamo il contenitore per assegnargli una costante
+creo un ciclo per creare i quadrati
+    scrivo i numero all'interno dandogli display none
+adatto il n di quadrati in base alla difficoltà inserita dall'user
 creo una funzione mi permetterà di togliere un display con un click
 */
 
-let domandaIniziale = prompt("scegli la difficltà tra 1, 2 o 3"); 
+let domandaIniziale = prompt("scegli la difficltà tra 1, 2 o 3");  
 
-if (domandaIniziale == 1) {
- alert("difficoltà 3, bassa");
+let levels = 100; //di default, in base a quante volte divido il contenitore
+
+ if (domandaIniziale == 1) {
+    levels = 100;
 } else if  (domandaIniziale == 2) {
- alert("difficoltà 2, media") ;
+    levels = 81;
 } else if (domandaIniziale == 3) {
- alert("difficoltà 1, massima") ;
+    levels = 49;
+} else if (domandaIniziale > 3 ||domandaIniziale < 1) {
+    alert("riprova, i livelli sono da 1 a 3 ")
+    levels = 0;
 }
 
 const contenitore = document.getElementById("cont");
 
-for (let i = 0; i < 100; i++) {
-    
+ for (let i = 0; i < levels; i++) {
+
     let newElement = newSquare ("div", "square");
     newElement.addEventListener("click",
 
@@ -28,7 +33,11 @@ for (let i = 0; i < 100; i++) {
     });
 
     contenitore.appendChild(newElement);
+   //errore /*  contenitore.innerHTML+= `<div class="square">${i+1}</div>`; */
+    console.log(contenitore);
+    
 }
+
 
 
 function newSquare (elemento, quadratoNuovo) {
@@ -36,5 +45,3 @@ function newSquare (elemento, quadratoNuovo) {
     node.classList.add(quadratoNuovo);
     return node
 }
-
-
